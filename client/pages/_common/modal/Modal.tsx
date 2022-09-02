@@ -1,5 +1,6 @@
 import React from 'react';
-import { ReactPortal, Div } from '../';
+import { ReactPortal } from '../react-portal/ReactPortal';
+import { Div } from '../html/containers/Containers';
 import classes from './modal.module.css';
 
 export const Modal = ({ children, isOpen, setIsOpen, setIsPost, wrapperId = 'default', ...props }: any) => {

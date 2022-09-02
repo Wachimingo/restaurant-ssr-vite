@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from './carousel.module.css';
-import { IMG } from '../';
+import { IMG } from '../img/Img';
 
 export const Carousel = ({ data }) => {
     const indicator = data?.map((item, i) => <a
