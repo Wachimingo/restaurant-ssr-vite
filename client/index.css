@@ -1,0 +1,35 @@
+:root {
+  /* color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424; */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+
+  --success: rgb(47, 209, 42);
+  --error: rgb(255, 73, 73);
+  --info: rgb(81, 135, 253);
+  --font-color: black;
+
+  --navbar-primary: #36383F;
+  --navbar-secondary: #4B4E58;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  min-width: 364px;
+  max-height: 100vh;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  height: fit-content;
+}
