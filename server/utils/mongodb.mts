@@ -35,5 +35,11 @@ async function dbConnect() {
         console.log(`\x1b[31m Caught following database error in utils/mogodb.mts:\x1b[0m ${error}`);
     }
 }
-
+export async function dbDisconnect() {
+    try {
+        await mongoose.disconnect();
+    } catch (error) {
+        console.log(`\x1b[31m Caught following database error in utils/mogodb.mts -> dbDisconnect:\x1b[0m ${error}`);
+    }
+}
 export default dbConnect;

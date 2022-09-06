@@ -8,12 +8,13 @@ import react from '@vitejs/plugin-react';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-// const externals = ['react', 'react-router-dom', 'react-dom', '@reduxjs/toolkit', 'react-hook-form', 'react-icons']
-const externals = ['@fastify/autoload', '@fastify/static', 'dotenv', 'fastify', 'mongoose', 'sharp']
-// const externals = [];
+// const externals = ['react', 'react-router-dom', 'react-dom', '@reduxjs/toolkit', 'react-hook-form', 'react-icons', 'redux', 'react-redux'];
+// const externals = ['@fastify/autoload', '@fastify/static', 'dotenv', 'fastify', 'mongoose', 'sharp'];
+const externals = [];
+// const react = ['react','react-dom']
 
 //@ts-ignore
-import { dependencies } from './package.json';
+import { clientPackages } from './package.json';
 
 const renderChunks = (deps: Record<string, string>) => {
   let chunks = {};
@@ -28,14 +29,14 @@ const renderChunks = (deps: Record<string, string>) => {
 export default defineConfig(({ command, mode, ssrBuild }) => {
   return {
     plugins: [react()],
-    // ssr: {
-    //   external: !ssrBuild ? externals : false
-    // },
+    ssr: {
+      external: externals
+    },
     build: {
       target: 'es2022',
       outDir: resolve(__dirname, 'server/public'),
       emptyOutDir: false,
-      minify: false,
+      minify: true,
       cssCodeSplit: true,
       assetsInlineLimit: 2048,
       rollupOptions: {
@@ -43,9 +44,10 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
         output: {
           assetFileNames: '[ext]/[name][extname]',
           entryFileNames: 'js/[name].js',
+          chunkFileNames: 'chunks/[name].js',
           manualChunks: !ssrBuild ? {
-            externals: externals,
-            ...renderChunks(dependencies)
+            react: externals,
+            ...renderChunks(clientPackages)
           } : false
         },
       },

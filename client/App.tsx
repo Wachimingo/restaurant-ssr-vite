@@ -1,11 +1,10 @@
 import React from 'react'
 import { Routes, Route } from "react-router-dom";
 import { NavBar } from './pages/_common/navbar/NavBar';
-import { Home } from './pages/home/Home';
-import { Catalog } from './pages/catalog/Catalog';
-// import { Catalog as AdminCatalog } from './pages/admin/catalog';
-import { Sell } from './pages/sell/Sell';
-import './app.css';
+import { Home } from './pages/Home';
+import { Catalog } from './pages/Catalog';
+import { Catalog as AdminCatalog } from './pages/Admin_Catalog';
+import { Sell } from './pages/Sell';
 
 function App() {
   return (
@@ -17,7 +16,7 @@ function App() {
         <Route path="/catalog" element={<Catalog />} />
         <Route path="/sell" element={<Sell />} />
         {/* Admin routes */}
-        {/* <Route path="/admin/catalog" element={<AdminCatalog />} /> */}
+        <Route path="/admin/catalog" element={<AdminCatalog />} />
       </Routes>
       {/* </BrowserRouter> */}
     </>

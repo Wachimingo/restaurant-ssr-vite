@@ -8,8 +8,9 @@
     "build:server_stream": "vite build --emptyOutDir=false --ssr client/entry-server-stream.tsx --outDir server/public/",
     "build:server_prerender": "vite build --emptyOutDir=false --ssr client/entry-server-prerender.tsx --outDir server/public/",
     "inject": "npx ts-node ./prerender.ts",
-    "generate": "vite build --ssrManifest  && npm run build:server_stream && npm run build:server_prerender && npm run inject",
+    "generate": "vite build --ssrManifest  && npm run build:server_stream && npm run build:server_prerender && npm run inject && npm run purgecss",
     "build": "tsc && vite build",
+    "purgecss": "node ./purgefilescss.js",
     "prod": "npx nodemon server.ts --prod"
   },
   "dependencies": {
@@ -28,12 +29,23 @@
     "redux": "^4.2.0",
     "sharp": "^0.30.7"
   },
+  "clientPackages": {
+    "@reduxjs/toolkit": "^1.8.5",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.34.0",
+    "react-icons": "^4.4.0",
+    "react-redux": "^8.0.2",
+    "react-router-dom": "^6.3.0",
+    "redux": "^4.2.0"
+  },
   "devDependencies": {
     "@types/node": "^18.7.13",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
     "@vitejs/plugin-react": "^2.0.1",
     "nodemon": "^2.0.19",
+    "purgecss": "^4.1.3",
     "ts-node": "^10.9.1",
     "typescript": "^4.6.4",
     "vite": "^3.0.7"

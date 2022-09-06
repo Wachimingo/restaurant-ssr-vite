@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, TR, TH, TD } from '../../_common/table/Table';
+import { Table, TR, TH, TD } from '../table/Table';
 
 export default ({ selecteds, dishes, counters, amount, total }) => {
     return <Table>

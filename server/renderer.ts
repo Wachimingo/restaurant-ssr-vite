@@ -25,23 +25,24 @@ async function* streamHtml(head, body, footer) {
 
 export const streamPage = (url) => {
   // const chunk = chunks.filter((chunk) => chunk.toLowerCase().includes(url === '/' ? 'home' : url))
-  const page = url === '/' ? 'Home' : url.charAt(0).toUpperCase() + url.slice(1);
+  const page = url === '/' ? 'Home' : url;
+  const route = page.includes('Admin') ? `admin/${page.split('_')[1]}` : page;
   head = `
-<!DOCTYPE html>
-<html lang="en">
+    <!DOCTYPE html>
+    <html lang="en">
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Restaurant</title>  
-  <script async type="module" crossorigin src="/chunks/${page}.js"></script>  
-  <link rel="stylesheet" href="/css/index.css">
-</head>
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Restaurant - ${page}</title>  
+      <script async type="module" crossorigin src="/js/index.js"></script>
+      <link rel="stylesheet" href="/css/${page.toLowerCase()}.css">
+    </head>
 
-<body>
-  <div id="root">
-`
+    <body>
+      <div id="root">
+  `
   return Readable
-    .from(streamHtml(head, render(`/${url.toLowerCase()}`), footer))
+    .from(streamHtml(head, render(`/${route === 'Home' ? '/' : route}`), footer))
     .on('error', console.log)
 }
